@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TypeScript Calculator</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f5f5f5;
+        font-family: Arial, sans-serif;
+        margin: 0;
+      }
+
+      #calculator {
+        background-color: #ecb3ea;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-gap: 10px;
+        width: 480px;
+      }
+
+      #calculator .display {
+        background-color: #aeddf9;
+        color: white;
+        text-align: right;
+        padding: 20px;
+        font-size: 2em;
+        border-radius: 5px;
+        grid-column: span 6;
+      }
+
+      #calculator button {
+        width: 100%;
+        height: 60px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.5em;
+        color: white;
+        background-color: #aeddf9;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      #calculator button:hover {
+        background-color: #1fa2ee;
+      }
+
+      #calculator button.function {
+        background-color: #c4e7fb;
+      }
+
+      #calculator button.equals {
+        background-color: #b3ebd4;
+        color: black;
+      }
+
+      #calculator button.equals:hover {
+        background-color: #b8f9ae;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="calculator">
+      <div class="display" id="display">0</div>
+      <button class="function">M+</button>
+      <button class="function">M-</button>
+      <button class="function">MR</button>
+      <button class="function">MC</button>
+      <button class="function">+/-</button>
+      <button class="function">√</button>
+      <button class="function">%</button>
+      <button class="function">CE</button>
+      <button class="function">C</button>
+      <button class="function">log</button>
+      <button class="function">ln</button>
+      <button class="function">sin</button>
+      <button class="function">cos</button>
+      <button class="function">tan</button>
+      <button class="function">ctg</button>
+      <button>7</button>
+      <button>8</button>
+      <button>9</button>
+      <button class="function">/</button>
+      <button class="function">toBin</button>
+      <button class="function">toHex</button>
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+      <button class="function">*</button>
+      <button class="function">toOct</button>
+      <button class="function">and</button>
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button class="function">-</button>
+      <button class="function">or</button>
+      <button class="function">xor</button>
+      <button>0</button>
+      <button class="function">.</button>
+      <button class="equals">=</button>
+      <button class="function">+</button>
+      <button class="function">not</button>
+      <button class="function">^2</button>
+      <button class="function">1/x</button>
+      <button class="function">!</button>
+    </div>
+    <script src="renderer.js"></script>
+  </body>
+</html>
