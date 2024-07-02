@@ -17,12 +17,15 @@ export interface ICalculator {
 }
 
 export interface IScientificCalculator extends ICalculator {
-  log(value: number): number;
-  ln(value: number): number;
+  mode: 'DEG' | 'RAD';
+  toggleMode(): void;
+  toRadians(angle: number): number;
   sin(value: number): number;
   cos(value: number): number;
   tan(value: number): number;
   ctg(value: number): number;
+  log(value: number): number;
+  ln(value: number): number;
 }
 
 export interface IProgrammerCalculator extends ICalculator {

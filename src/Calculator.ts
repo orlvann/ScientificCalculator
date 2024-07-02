@@ -46,48 +46,82 @@ export class Calculator implements ICalculator {
   calculate(): void {
     const newValue = parseFloat(this.displayValue);
     if (!isNaN(newValue)) {
-      switch (this.operator) {
-        case '+':
-          this.currentValue = this.memoryValue + newValue;
-          break;
-        case '-':
-          this.currentValue = this.memoryValue - newValue;
-          break;
-        case '*':
-          this.currentValue = this.memoryValue * newValue;
-          break;
-        case '/':
-          if (newValue === 0) {
-            throw new Error('Division by zero');
-          }
-          this.currentValue = this.memoryValue / newValue;
-          break;
+      try {
+        switch (this.operator) {
+          case '+':
+            this.currentValue = this.memoryValue + newValue;
+            break;
+          case '-':
+            this.currentValue = this.memoryValue - newValue;
+            break;
+          case '*':
+            this.currentValue = this.memoryValue * newValue;
+            break;
+          case '/':
+            if (newValue === 0) {
+              throw new Error('Division by zero');
+            }
+            this.currentValue = this.memoryValue / newValue;
+            break;
+          default:
+            break;
+        }
+        this.displayValue = this.currentValue.toString();
+      } catch (error) {
+        this.displayValue = 'Error';
       }
-      this.displayValue = this.currentValue.toString();
     }
   }
 
   power(): void {
-    this.currentValue = Math.pow(parseFloat(this.displayValue), 2);
-    this.displayValue = this.currentValue.toString();
+    try {
+      this.currentValue = Math.pow(parseFloat(this.displayValue), 2);
+      this.displayValue = this.currentValue.toString();
+    } catch (error) {
+      this.displayValue = 'Error';
+    }
   }
 
   squareRoot(): void {
-    this.currentValue = Math.sqrt(parseFloat(this.displayValue));
-    this.displayValue = this.currentValue.toString();
+    try {
+      const value = parseFloat(this.displayValue);
+      if (value < 0) {
+        throw new Error('Invalid input for square root');
+      }
+      this.currentValue = Math.sqrt(value);
+      this.displayValue = this.currentValue.toString();
+    } catch (error) {
+      this.displayValue = 'Error';
+    }
   }
 
   factorial(): void {
-    const factorialRec = (n: number): number => {
-      if (n <= 1) return 1;
-      return n * factorialRec(n - 1);
-    };
-    this.currentValue = factorialRec(parseFloat(this.displayValue));
-    this.displayValue = this.currentValue.toString();
+    try {
+      const value = parseFloat(this.displayValue);
+      if (value < 0 || !Number.isInteger(value)) {
+        throw new Error('Invalid input for factorial');
+      }
+      const factorialRec = (n: number): number => {
+        if (n <= 1) return 1;
+        return n * factorialRec(n - 1);
+      };
+      this.currentValue = factorialRec(value);
+      this.displayValue = this.currentValue.toString();
+    } catch (error) {
+      this.displayValue = 'Error';
+    }
   }
 
   reciprocal(): void {
-    this.currentValue = 1 / parseFloat(this.displayValue);
-    this.displayValue = this.currentValue.toString();
+    try {
+      const value = parseFloat(this.displayValue);
+      if (value === 0) {
+        throw new Error('Division by zero');
+      }
+      this.currentValue = 1 / value;
+      this.displayValue = this.currentValue.toString();
+    } catch (error) {
+      this.displayValue = 'Error';
+    }
   }
 }

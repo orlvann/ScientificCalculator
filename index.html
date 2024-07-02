@@ -56,6 +56,10 @@
         background-color: #c4e7fb;
       }
 
+      #calculator button.function:hover {
+        background-color: #1fa2ee;
+      }
+
       #calculator button.equals {
         background-color: #b3ebd4;
         color: black;
@@ -70,24 +74,24 @@
     <div id="calculator">
       <div class="display" id="display">0</div>
       <button class="function">M+</button>
-      <button class="function">M-</button>
-      <button class="function">MR</button>
-      <button class="function">MC</button>
+      <button class="function">%</button>
       <button class="function">+/-</button>
       <button class="function">√</button>
-      <button class="function">%</button>
       <button class="function">CE</button>
       <button class="function">C</button>
-      <button class="function">log</button>
+      <button class="function">M-</button>
       <button class="function">ln</button>
-      <button class="function">sin</button>
-      <button class="function">cos</button>
-      <button class="function">tan</button>
-      <button class="function">ctg</button>
+      <button class="function">log</button>
+      <button class="function" id="sin">sin</button>
+      <button class="function" id="cos">cos</button>
+      <button class="function" id="tan">tan</button>
+      <button class="function">MR</button>
+      <button class="function" id="ctg">ctg</button>
       <button>7</button>
       <button>8</button>
       <button>9</button>
       <button class="function">/</button>
+      <button class="function">MC</button>
       <button class="function">toBin</button>
       <button class="function">toHex</button>
       <button>4</button>
@@ -110,6 +114,7 @@
       <button class="function">^2</button>
       <button class="function">1/x</button>
       <button class="function">!</button>
+      <button class="function" id="toggleMode">Deg</button>
     </div>
     <script src="renderer.js"></script>
   </body>

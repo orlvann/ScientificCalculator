@@ -32,6 +32,4 @@ export class ProgrammerCalculator
   xor(a: number, b: number): number {
     return a ^ b;
   }
-
-  // Add more functionalities as needed
 }
