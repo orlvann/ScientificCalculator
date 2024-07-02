@@ -69,7 +69,7 @@
         background-color: #b8f9ae;
       }
     </style>
-  </head>
+  <script defer src="bundle.js"></script></head>
   <body>
     <div id="calculator">
       <div class="display" id="display">0</div>
@@ -115,6 +115,11 @@
       <button class="function">1/x</button>
       <button class="function">!</button>
       <button class="function" id="toggleMode">Deg</button>
+      <div id="mode-switch">
+        <button id="switch-to-standard">Standard</button>
+        <button id="switch-to-scientific">Scientific</button>
+        <button id="switch-to-programmer">Programmer</button>
+      </div>
     </div>
     <script src="dist/main.js"></script>
   </body>
