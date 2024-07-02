@@ -67,7 +67,7 @@ export class UI {
 
   private handleFunctionInput(buttonValue: string) {
     console.log('Function input:', buttonValue);
-    let result: number;
+    let result: number | string;
     try {
       switch (buttonValue) {
         case 'C':
@@ -86,6 +86,9 @@ export class UI {
             this.updateDisplay(result.toString());
             this.firstOperand = null;
             this.operator = null;
+          } else {
+            result = this.evaluator.evaluate(this.displayElement.textContent!);
+            this.updateDisplay(result.toString());
           }
           break;
         case 'M+':
@@ -104,17 +107,23 @@ export class UI {
         case '-':
         case '*':
         case '/':
+        case 'and':
+        case 'or':
+        case 'xor':
+          this.firstOperand = parseFloat(this.displayElement.textContent!);
+          this.operator = buttonValue;
+          this.updateDisplay('0');
+          break;
         case '%':
         case '^2':
         case '√':
         case '1/x':
-        case 'and':
-        case 'or':
-        case 'xor':
         case 'not':
-          this.firstOperand = parseFloat(this.displayElement.textContent!);
-          this.operator = buttonValue;
-          this.updateDisplay('0');
+          result = this.handleUnaryOperation(
+            buttonValue,
+            parseFloat(this.displayElement.textContent!)
+          );
+          this.updateDisplay(result.toString());
           break;
         case 'sin':
         case 'cos':
@@ -130,7 +139,7 @@ export class UI {
         case 'toHex':
         case 'toOct':
           result = this.handleConversion(buttonValue);
-          this.updateDisplay(result.toString());
+          this.updateDisplay(result);
           break;
         case '+/-':
           this.updateDisplay(
@@ -161,24 +170,32 @@ export class UI {
         return this.calculator.multiply(firstOperand, secondOperand);
       case '/':
         return this.calculator.divide(firstOperand, secondOperand);
-      case '%':
-        return this.calculator.percent(firstOperand);
-      case '^2':
-        return this.scientificCalculator.power(firstOperand, 2);
-      case '√':
-        return this.scientificCalculator.sqrt(firstOperand);
-      case '1/x':
-        return this.scientificCalculator.reciprocal(firstOperand);
       case 'and':
         return this.programmerCalculator.and(firstOperand, secondOperand);
       case 'or':
         return this.programmerCalculator.or(firstOperand, secondOperand);
       case 'xor':
         return this.programmerCalculator.xor(firstOperand, secondOperand);
-      case 'not':
-        return this.programmerCalculator.not(firstOperand);
       default:
         return secondOperand;
+    }
+  }
+
+  private handleUnaryOperation(operator: string, operand: number): number {
+    console.log(`Unary Operation: ${operator} ${operand}`);
+    switch (operator) {
+      case '%':
+        return this.calculator.percent(operand);
+      case '^2':
+        return this.scientificCalculator.power(operand, 2);
+      case '√':
+        return this.scientificCalculator.sqrt(operand);
+      case '1/x':
+        return this.scientificCalculator.reciprocal(operand);
+      case 'not':
+        return this.programmerCalculator.not(operand);
+      default:
+        throw new Error('Unsupported operation');
     }
   }
 
@@ -205,21 +222,18 @@ export class UI {
     }
   }
 
-  private handleConversion(buttonValue: string): number {
+  private handleConversion(buttonValue: string): string {
     const value = parseInt(this.displayElement.textContent!, 10);
     console.log(`Conversion: ${buttonValue}(${value})`);
     switch (buttonValue) {
       case 'toBin':
-        this.updateDisplay(this.programmerCalculator.toBinary(value));
-        return value;
+        return this.programmerCalculator.toBinary(value);
       case 'toHex':
-        this.updateDisplay(this.programmerCalculator.toHex(value));
-        return value;
+        return this.programmerCalculator.toHex(value);
       case 'toOct':
-        this.updateDisplay(this.programmerCalculator.toOctal(value));
-        return value;
+        return this.programmerCalculator.toOctal(value);
       default:
-        return value;
+        return value.toString();
     }
   }
 
