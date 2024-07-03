@@ -21,9 +21,9 @@
         padding: 20px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         grid-gap: 10px;
-        width: 480px;
+        width: 550px;
       }
 
       #calculator .display {
@@ -33,7 +33,7 @@
         padding: 20px;
         font-size: 2em;
         border-radius: 5px;
-        grid-column: span 6;
+        grid-column: span 5;
       }
 
       #calculator button {
@@ -63,58 +63,96 @@
       #calculator button.equals {
         background-color: #b3ebd4;
         color: black;
+        grid-column: span 2;
       }
 
       #calculator button.equals:hover {
         background-color: #b8f9ae;
+      }
+
+      #calculator button.rad-deg {
+        background-color: #b3ebd4;
+        grid-column: span 2;
+        color: black;
+      }
+
+      #calculator button.rad-deg:hover {
+        background-color: #b8f9ae;
+      }
+
+      #calculator button.wide {
+        grid-column: span 2;
+      }
+
+      #calculator .basic-ops,
+      #calculator .numbers,
+      #calculator .scientific,
+      #calculator .programmer {
+        display: contents;
       }
     </style>
   </head>
   <body>
     <div id="calculator">
       <div class="display" id="display">0</div>
-      <button class="function">M+</button>
-      <button class="function">%</button>
-      <button class="function">+/-</button>
-      <button class="function">√</button>
-      <button class="function">CE</button>
-      <button class="function">C</button>
-      <button class="function">M-</button>
-      <button class="function">ln</button>
-      <button class="function">log</button>
-      <button class="function" id="sin">sin</button>
-      <button class="function" id="cos">cos</button>
-      <button class="function" id="tan">tan</button>
-      <button class="function">MR</button>
-      <button class="function" id="ctg">ctg</button>
-      <button class="calculator-button">7</button>
-      <button class="calculator-button">8</button>
-      <button class="calculator-button">9</button>
-      <button class="function">/</button>
-      <button class="function">MC</button>
-      <button class="function">toBin</button>
-      <button class="function">toHex</button>
-      <button class="calculator-button">4</button>
-      <button class="calculator-button">5</button>
-      <button class="calculator-button">6</button>
-      <button class="function">*</button>
-      <button class="function">toOct</button>
-      <button class="function">and</button>
-      <button class="calculator-button">1</button>
-      <button class="calculator-button">2</button>
-      <button class="calculator-button">3</button>
-      <button class="function">-</button>
-      <button class="function">or</button>
-      <button class="function">xor</button>
-      <button class="calculator-button">0</button>
-      <button class="function">.</button>
-      <button class="equals">=</button>
-      <button class="function">+</button>
-      <button class="function">not</button>
-      <button class="function">^2</button>
-      <button class="function">1/x</button>
-      <button class="function">!</button>
-      <button class="function" id="toggleMode">Deg</button>
+
+      <!-- Basic Operators -->
+      <div class="basic-ops">
+        <button class="function">CE</button>
+        <button class="function">C</button>
+        <button class="function">+</button>
+        <button class="function">-</button>
+        <button class="function">*</button>
+        <button class="function">/</button>
+        <button class="function">+/-</button>
+        <button class="function">%</button>
+      </div>
+
+      <!-- Scientific Functions -->
+      <div class="scientific">
+        <button class="function" id="sin">sin</button>
+        <button class="function" id="cos">cos</button>
+        <button class="function" id="tan">tan</button>
+        <button class="function" id="ctg">ctg</button>
+        <button class="function">ln</button>
+        <button class="function">log</button>
+        <button class="function">√</button>
+        <button class="function">^2</button>
+        <button class="function">1/x</button>
+        <button class="function">!</button>
+      </div>
+
+      <!-- Programmer Functions -->
+      <div class="programmer">
+        <button class="function">toBin</button>
+        <button class="function">toHex</button>
+        <button class="function">toOct</button>
+        <button class="function">and</button>
+        <button class="function">or</button>
+        <button class="function">xor</button>
+        <button class="function">not</button>
+        <button class="function">M+</button>
+        <button class="function">M-</button>
+        <button class="function">MR</button>
+        <button class="function">MC</button>
+      </div>
+
+      <!-- Numbers -->
+      <div class="numbers">
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button class="wide">0</button>
+        <button class="function">.</button>
+        <button class="equals">=</button>
+        <button class="rad-deg" id="toggleMode">Deg</button>
+      </div>
     </div>
     <script src="dist/main.js"></script>
   </body>
